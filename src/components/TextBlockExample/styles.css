@@ -1,0 +1,11 @@
+.blockFlex {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.text {
+  font-size: 2rem;
+  line-height: 1.5;
+  color: #000000cc;
+}

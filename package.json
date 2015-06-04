@@ -1,0 +1,36 @@
+{
+  "name": "react-starter",
+  "version": "1.0.0",
+  "description": "React starter project",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack -p",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "react",
+    "bootstrap",
+    "babel",
+    "cssnext",
+    "postcss"
+  ],
+  "author": "Oleg Kislitsyn",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "latest",
+    "babel-loader": "latest",
+    "babel-runtime": "latest",
+    "css-loader": "latest",
+    "cssnext-loader": "latest",
+    "eslint": "latest",
+    "extract-text-webpack-plugin": "latest",
+    "node-libs-browser": "latest",
+    "react-hot-loader": "^1.2.7",
+    "webpack": "latest",
+    "webpack-dev-server": "latest"
+  },
+  "dependencies": {
+    "react": "^0.13.3",
+    "whatwg-fetch": "^0.9.0"
+  }
+}
