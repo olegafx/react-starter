@@ -3,27 +3,27 @@ import React, { Component } from 'react';
 import styles from '../components/TextBlockExample/styles.css';
 
 class TextBlockExample extends Component {
-	constructor (props) {
-		super(props);
-	}
+  constructor (props) {
+    super(props);
+  }
 
-	componentDidMount () {
-		this.getData();
-	} 
+  componentDidMount () {
+    this.getData();
+  }
 
-	async getData () {
-		const rawData = await fetch('http://headers.jsontest.com/');
-		const data = await rawData.json();
+  async getData () {
+    const rawData = await fetch('http://headers.jsontest.com/');
+    const data = await rawData.json();
 
-		console.log('data', data);
-	}
+    console.log('data', data);
+  }
 
   render () {
-  	return (
-  		<div className={styles.blockFlex}>
+    return (
+      <div className={styles.blockFlex}>
         <span className={styles.text}>text block example</span>
       </div>
-  	);
+    );
   }
 }
 
