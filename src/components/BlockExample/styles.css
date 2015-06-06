@@ -1,0 +1,10 @@
+.blockFlex {
+  display: flex;
+  background-color: #444;
+  margin-left: 45px;
+}
+
+.text {
+  color: white;
+  font-size: 3rem;
+}

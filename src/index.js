@@ -1,3 +1,5 @@
+import React from 'react';
+
 import 'whatwg-fetch';
 
 import App from './app';
