@@ -30,6 +30,7 @@
     "webpack-dev-server": "latest"
   },
   "dependencies": {
+    "es6-promise": "^2.3.0",
     "react": "^0.13.3",
     "whatwg-fetch": "^0.9.0"
   }
