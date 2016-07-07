@@ -1,8 +1,28 @@
 import React from 'react';
+import { render } from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
 
-import 'es6-promise';
+import 'babel-polyfill';
 import 'whatwg-fetch';
 
-import App from './app';
+import Root from './containers/Root';
 
-React.render(<App/>, document.getElementById('content'));
+render(
+  <AppContainer>
+    <Root/>
+  </AppContainer>,
+  document.getElementById('root')
+);
+
+if (module.hot) {
+  module.hot.accept('./containers/Root', () => {
+    const NextApp = require('./containers/Root').default;
+
+    render(
+      <AppContainer>
+         <NextApp />
+      </AppContainer>,
+      document.getElementById('root')
+    );
+  });
+}

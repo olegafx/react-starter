@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import styles from './styles.css';
+import styles from '../css/TextBlockExample.css';
 
 export default class TextBlockExample extends Component {
   constructor (props) {

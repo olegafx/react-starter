@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-import TestPage from './pages/test';
+import Test from './Test';
 
-export default class App extends Component {
+export default class Root extends Component {
   constructor (props) {
     super(props);
   }
 
   render () {
     return (
-      <TestPage/>
+      <Test/>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import BlockExample from '../components/BlockExample/BlockExample';
-import TextBlockExample from '../components/TextBlockExample/TextBlockExample';
+import BlockExample from '../components/BlockExample';
+import TextBlockExample from '../components/TextBlockExample';
 
 export default class TestPage extends Component {
   constructor (props) {
