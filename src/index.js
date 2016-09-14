@@ -7,12 +7,16 @@ import 'whatwg-fetch';
 
 import Root from './containers/Root';
 
-render(
-  <AppContainer>
-    <Root/>
-  </AppContainer>,
-  document.getElementById('root')
-);
+const renderApp = () => {
+  render(
+    <AppContainer>
+      <Root/>
+    </AppContainer>,
+    document.getElementById('root')
+  );
+};
+
+renderApp();
 
 if (module.hot) {
   module.hot.accept('./containers/Root', () => {
