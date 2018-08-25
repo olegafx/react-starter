@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react'
 
-import styles from '../css/BlockExample.css';
+import styles from '../css/BlockExample.css'
 
 export default class TextBlockExample extends Component {
-  constructor (props) {
-    super(props);
+  constructor(props) {
+    super(props)
   }
 
-  render () {
+  render() {
     return (
       <div className={styles.blockFlex}>
         <span className={styles.text}>It works!</span>
       </div>
-    );
+    )
   }
 }
