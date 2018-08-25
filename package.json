@@ -20,17 +20,25 @@
     "build": "./node_modules/.bin/webpack -p --bail --config ./webpack.config.prod.js",
     "start": "node server.js"
   },
-  "pre-commit": [
-    "lint-staged"
-  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
-    "eslint": "*.js",
-    "stylelint": "*.css"
+    "src/**/*.{js,jsx,json,css}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "devDependencies": {
-    "babel-eslint": "6.1.0",
-    "eslint": "3.0.1",
-    "eslint-plugin-react": "5.2.2",
+    "babel-eslint": "8.2.6",
+    "eslint": "5.4.0",
+    "eslint-plugin-prettier": "2.6.2",
+    "eslint-plugin-react": "7.11.1",
+    "husky": "0.14.3",
+    "lint-staged": "7.2.2",
+    "prettier": "1.14.2",
     "stylelint": "6.8.0",
     "webpack-dev-server": "1.14.1",
     "why-did-you-update": "0.0.8"
@@ -48,7 +56,6 @@
     "babel-runtime": "6.9.2",
     "css-loader": "0.25.0",
     "extract-text-webpack-plugin": "1.0.1",
-    "lint-staged": "3.0.1",
     "lodash": "4.13.1",
     "postcss-loader": "0.13.0",
     "pre-commit": "1.1.3",
