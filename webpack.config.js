@@ -1,6 +1,7 @@
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var path = require("path");
+const path = require("path");
 
 module.exports = {
   entry: {
@@ -59,6 +60,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin({
       filename: "[name].css"
-    })
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin()
   ]
 };

@@ -18,6 +18,7 @@ new WebpackDevServer(webpack(webpackConfig), {
   publicPath: webpackConfig.output.publicPath,
   hot: true,
   historyApiFallback: true,
+  disableHostCheck: true,
   stats: {
     assets: false,
     children: false,
