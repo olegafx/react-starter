@@ -1,5 +1,3 @@
-var webpack = require("webpack");
-var autoprefixer = require("autoprefixer");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var path = require("path");
@@ -16,16 +14,32 @@ module.exports = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
-          "css-loader?modules&localIdentName=" +
-            (process.env.NODE_ENV === "production"
-              ? "[hash:base64]"
-              : "[name]__[local]___[hash:base64:5]") +
-            "&importLoaders=1!postcss-loader"
-        )
+        loader: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: "css-loader",
+              options: {
+                modules: true,
+                sourceMap: true,
+                localIdentName:
+                  process.env.NODE_ENV === "production"
+                    ? "[hash:base64]"
+                    : "[name]__[local]___[hash:base64:5]",
+                importLoaders: 1
+              }
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                ident: "postcss",
+                plugins: () => [require("autoprefixer")]
+              }
+            }
+          ]
+        })
       },
       {
         test: /\.js$/,
@@ -35,17 +49,16 @@ module.exports = {
     ]
   },
 
-  postcss: function() {
-    return [autoprefixer];
-  },
-
   resolve: {
     alias: {
       react: path.resolve("./node_modules/react")
     },
-    extensions: ["", ".jsx", ".js", ".json"],
-    modulesDirectories: ["node_modules"]
+    modules: [path.resolve(__dirname, "src"), "node_modules"]
   },
 
-  plugins: [new ExtractTextPlugin("index.css")]
+  plugins: [
+    new ExtractTextPlugin({
+      filename: "[name].css"
+    })
+  ]
 };
