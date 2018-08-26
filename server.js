@@ -1,9 +1,9 @@
 var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
-var config = require("./webpack.config");
+var webpackConfig = require("./webpack.config.dev");
 
-new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
+new WebpackDevServer(webpack(webpackConfig), {
+  publicPath: webpackConfig.output.publicPath,
   hot: true,
   historyApiFallback: true,
   stats: {

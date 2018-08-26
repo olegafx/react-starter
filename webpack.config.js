@@ -6,12 +6,7 @@ var path = require("path");
 
 module.exports = {
   entry: {
-    index: [
-      "webpack-dev-server/client?http://0.0.0.0:3000",
-      "webpack/hot/only-dev-server",
-      "react-hot-loader/patch",
-      "./src/index"
-    ]
+    index: ["./src/index"]
   },
 
   output: {
@@ -52,10 +47,5 @@ module.exports = {
     modulesDirectories: ["node_modules"]
   },
 
-  plugins: [
-    new ExtractTextPlugin("index.css"),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ]
+  plugins: [new ExtractTextPlugin("index.css")]
 };
