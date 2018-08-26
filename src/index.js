@@ -14,19 +14,29 @@ const renderApp = () => {
     </AppContainer>,
     document.getElementById('root'),
   )
+
+  if (module.hot) {
+    module.hot.accept('./containers/Root', () => {
+      const NextApp = require('./containers/Root').default
+
+      render(
+        <AppContainer>
+          <NextApp />
+        </AppContainer>,
+        document.getElementById('root'),
+      )
+    })
+  }
 }
 
-renderApp()
+const tryToRenderApp = () => {
+  const loadedStates = ['complete', 'loaded', 'interactive']
 
-if (module.hot) {
-  module.hot.accept('./containers/Root', () => {
-    const NextApp = require('./containers/Root').default
-
-    render(
-      <AppContainer>
-        <NextApp />
-      </AppContainer>,
-      document.getElementById('root'),
-    )
-  })
+  if (loadedStates.includes(document.readyState) && document.body) {
+    renderApp()
+  } else {
+    window.addEventListener('DOMContentLoaded', renderApp, false)
+  }
 }
+
+tryToRenderApp()
