@@ -12,18 +12,18 @@ const renderApp = () => {
     <AppContainer>
       <Root />
     </AppContainer>,
-    document.getElementById('root'),
+    document.querySelector('.js-app'),
   )
 
   if (module.hot) {
     module.hot.accept('./containers/Root', () => {
-      const NextApp = require('./containers/Root').default
+      const RootContainer = require('./containers/Root').default
 
       render(
         <AppContainer>
-          <NextApp />
+          <RootContainer />
         </AppContainer>,
-        document.getElementById('root'),
+        document.querySelector('.js-app'),
       )
     })
   }
