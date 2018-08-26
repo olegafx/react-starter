@@ -1,14 +1,22 @@
 const webpack = require("webpack");
 const commonConfig = require("./webpack.config");
 
-const defaults = {
-  hmrPort: 3000
+const defaultAppConfig = {
+  port: 3000
 };
+
+let appConfig;
+
+try {
+  appConfig = require("./config/config");
+} catch (e) {
+  appConfig = defaultAppConfig;
+}
 
 const devConfig = commonConfig;
 
 devConfig.entry.index.unshift(
-  "webpack-dev-server/client?http://0.0.0.0:" + defaults.hmrPort,
+  "webpack-dev-server/client?http://0.0.0.0:" + appConfig.port,
   "webpack/hot/only-dev-server",
   "react-hot-loader/patch"
 );

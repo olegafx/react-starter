@@ -1,6 +1,18 @@
-var webpack = require("webpack");
-var WebpackDevServer = require("webpack-dev-server");
-var webpackConfig = require("./webpack.config.dev");
+const webpack = require("webpack");
+const WebpackDevServer = require("webpack-dev-server");
+const webpackConfig = require("./webpack.config.dev");
+
+const defaultAppConfig = {
+  port: 3000
+};
+
+let appConfig;
+
+try {
+  appConfig = require("./config/config");
+} catch (e) {
+  appConfig = defaultAppConfig;
+}
 
 new WebpackDevServer(webpack(webpackConfig), {
   publicPath: webpackConfig.output.publicPath,
@@ -16,10 +28,10 @@ new WebpackDevServer(webpack(webpackConfig), {
     chunks: false,
     chunkModules: false
   }
-}).listen(3000, "localhost", function(err) {
+}).listen(appConfig.port, "0.0.0.0", function(err) {
   if (err) {
     console.log(err);
   }
 
-  console.log("Listening at localhost:3000");
+  console.log("Listening at localhost:" + appConfig.port);
 });
