@@ -18,6 +18,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack -p --bail --config ./webpack.config.prod.js",
+    "lint-staged": "lint-staged",
     "start": "node server.js"
   },
   "husky": {
