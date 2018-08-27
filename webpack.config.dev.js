@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const sizePlugin = require("size-plugin");
 const commonConfig = require("./webpack.config");
 
 const defaultAppConfig = {
@@ -22,6 +23,9 @@ devConfig.entry.index.unshift(
   "webpack/hot/only-dev-server"
 );
 
-devConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+devConfig.plugins.push(
+  new webpack.HotModuleReplacementPlugin(),
+  new sizePlugin()
+);
 
 module.exports = devConfig;
