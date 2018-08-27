@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React from 'react'
+import {hot} from 'react-hot-loader'
 
 import Match from 'react-router/Match'
 import Miss from 'react-router/Miss'
@@ -43,4 +44,4 @@ const Root = () => (
   </Router>
 )
 
-export default Root
+export default hot(module)(Root)

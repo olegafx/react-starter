@@ -15,15 +15,13 @@ try {
 
 const devConfig = commonConfig;
 
+devConfig.mode = "development";
+
 devConfig.entry.index.unshift(
   "webpack-dev-server/client?http://0.0.0.0:" + appConfig.port,
-  "webpack/hot/only-dev-server",
-  "react-hot-loader/patch"
+  "webpack/hot/only-dev-server"
 );
 
-devConfig.plugins.push(
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NamedModulesPlugin()
-);
+devConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 
 module.exports = devConfig;

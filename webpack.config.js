@@ -1,6 +1,4 @@
-const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
 const path = require("path");
 
 module.exports = {
@@ -35,7 +33,6 @@ module.exports = {
             {
               loader: "postcss-loader",
               options: {
-                ident: "postcss",
                 plugins: () => [require("autoprefixer")]
               }
             }
@@ -44,7 +41,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        include: [path.resolve("src")],
+        include: [path.resolve(__dirname, "src")],
         loaders: ["babel-loader"]
       }
     ]
@@ -52,7 +49,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      react: path.resolve("./node_modules/react")
+      react: path.resolve(__dirname, "node_modules/react")
     },
     modules: [path.resolve(__dirname, "src"), "node_modules"]
   },
@@ -60,7 +57,6 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin({
       filename: "[name].css"
-    }),
-    new webpack.optimize.ModuleConcatenationPlugin()
+    })
   ]
 };
