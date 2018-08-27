@@ -19,7 +19,9 @@
   "scripts": {
     "build": "./node_modules/.bin/webpack --bail --config ./webpack.config.prod.js",
     "lint-staged": "lint-staged",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "husky": {
     "hooks": {
@@ -34,11 +36,17 @@
   },
   "browserslist": "last 2 versions, > 5%, not ie <= 11",
   "devDependencies": {
+    "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "8.2.6",
+    "babel-jest": "23.4.2",
+    "babel-plugin-dynamic-import-node": "2.0.0",
     "eslint": "5.4.0",
     "eslint-plugin-prettier": "2.6.2",
     "eslint-plugin-react": "7.11.1",
+    "fetch-mock": "6.5.2",
     "husky": "1.0.0-rc.13",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "23.5.0",
     "lint-staged": "7.2.2",
     "prettier": "1.14.2",
     "size-plugin": "1.0.0",

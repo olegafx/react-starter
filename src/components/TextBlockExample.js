@@ -28,10 +28,11 @@ class TextBlockExample extends Component {
 
   render() {
     const {text} = this.state
+    const {value} = this.props
 
     return (
       <div className={styles.blockFlex}>
-        <span className={styles.text}>{text}</span>
+        <span className={styles.text}>{value || text}</span>
       </div>
     )
   }

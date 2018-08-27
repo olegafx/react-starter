@@ -1,5 +1,5 @@
 module.exports = function(api) {
-  api.cache.using(() => process.env.NODE_ENV);
+  const isTest = String(api.env()) === "test";
 
   const plugins = [
     "react-hot-loader/babel",
@@ -26,15 +26,18 @@ module.exports = function(api) {
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-syntax-import-meta",
     ["@babel/plugin-proposal-class-properties", { loose: false }],
-    "@babel/plugin-proposal-json-strings"
-  ];
+    "@babel/plugin-proposal-json-strings",
+
+    // jest
+    isTest ? "babel-plugin-dynamic-import-node" : null
+  ].filter(Boolean);
 
   const presets = [
     [
       "@babel/preset-env",
       {
-        debug: true,
-        modules: false,
+        debug: false,
+        modules: isTest ? "commonjs" : false,
         useBuiltIns: "usage"
       }
     ],
