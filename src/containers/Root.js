@@ -1,10 +1,7 @@
 import React from 'react'
 import {hot} from 'react-hot-loader'
 
-import Match from 'react-router/Match'
-import Miss from 'react-router/Miss'
-import Link from 'react-router/Link'
-import Router from 'react-router/BrowserRouter'
+import {BrowserRouter, Link, Route, Switch} from 'react-router-dom'
 
 import App from './App'
 
@@ -19,7 +16,7 @@ const NoMatch = ({location}) => (
 )
 
 const Root = () => (
-  <Router>
+  <BrowserRouter>
     <div>
       <ul>
         <li>
@@ -35,13 +32,14 @@ const Root = () => (
 
       <hr />
 
-      <Match exactly pattern="/" component={App} />
-      <Match pattern="/block" component={BlockExample} />
-      <Match pattern="/text" component={TextExample} />
-
-      <Miss component={NoMatch} />
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/block" component={BlockExample} />
+        <Route path="/text" component={TextExample} />
+        <Route component={NoMatch} />
+      </Switch>
     </div>
-  </Router>
+  </BrowserRouter>
 )
 
 export default hot(module)(Root)
