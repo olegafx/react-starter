@@ -1,7 +1,7 @@
 module.exports = {
   overrides: [
     {
-      files: "src/**/*.{js,jsx,json,css}",
+      files: "{cypress,src,test}/**/*.js",
       options: {
         semi: false,
         singleQuote: true,

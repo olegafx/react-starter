@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "cypress/globals": true,
     "es6": true,
     "jest": true,
     "node": true
@@ -8,6 +9,7 @@
 
   "plugins": [
     "react",
+    "cypress",
     "prettier"
   ],
 
