@@ -1,4 +1,5 @@
 ########## App ##########
+/config/config.js
 /dist/
 /log/
 

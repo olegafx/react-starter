@@ -1,12 +1,7 @@
-var webpack = require('webpack');
-var config = require('./webpack.config');
+const commonConfig = require("./webpack.config");
 
-config.plugins.push(
-  new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production')
-    }
-  })
-);
+const prodConfig = commonConfig;
 
-module.exports = config;
+prodConfig.mode = "production";
+
+module.exports = prodConfig;

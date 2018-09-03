@@ -1,40 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react'
+import {hot} from 'react-hot-loader'
+import {Router, Link} from '@reach/router'
 
-import Match from 'react-router/Match';
-import Miss from 'react-router/Miss';
-import Link from 'react-router/Link';
-import Router from 'react-router/BrowserRouter';
+import App from './App'
 
-import App from './App';
+import BlockExample from '../components/BlockExample'
+import TextExample from '../components/TextBlockExample'
 
-import BlockExample from '../components/BlockExample';
-import TextExample from '../components/TextBlockExample';
-
-const NoMatch = ({ location }) => (
+const NotFound = ({location}) => (
   <div>
     <h2>Whoops</h2>
     <p>Sorry but {location.pathname} didn’t match any pages</p>
   </div>
-);
+)
 
 const Root = () => (
-  <Router>
-    <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/block">Block</Link></li>
-        <li><Link to="/text">Text</Link></li>
-      </ul>
+  <div>
+    <ul>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/block">Block</Link>
+      </li>
+      <li>
+        <Link to="/text">Text</Link>
+      </li>
+    </ul>
 
-      <hr/>
+    <hr />
 
-      <Match exactly pattern="/" component={App} />
-      <Match pattern="/block" component={BlockExample} />
-      <Match pattern="/text" component={TextExample} />
+    <Router>
+      <App path="/" />
+      <BlockExample path="/block" />
+      <TextExample path="/text" />
+      <NotFound default />
+    </Router>
+  </div>
+)
 
-      <Miss component={NoMatch}/>
-    </div>
-  </Router>
-);
-
-export default Root;
+export default hot(module)(Root)

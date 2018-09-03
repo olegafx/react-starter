@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react'
 
-import Test from './Test';
+import Test from './Test'
 
 export default class Root extends Component {
-  constructor (props) {
-    super(props);
+  constructor(props) {
+    super(props)
   }
 
-  render () {
-    return (
-      <Test/>
-    );
+  render() {
+    return <Test />
   }
 }

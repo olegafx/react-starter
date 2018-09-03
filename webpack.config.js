@@ -1,51 +1,62 @@
-var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-var path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require("path");
 
 module.exports = {
   entry: {
-    'index': [
-      'webpack-dev-server/client?http://0.0.0.0:3000',
-      'webpack/hot/only-dev-server',
-      'react-hot-loader/patch',
-      './src/index'
-    ]
+    index: ["./src/index"]
   },
 
   output: {
-    filename: '[name].js',
-    path: path.join(__dirname, '/dist/'),
-    publicPath: '/dist/'
+    filename: "[name].js",
+    path: path.join(__dirname, "/dist/"),
+    publicPath: "/dist/"
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('css-loader?modules&localIdentName=' + (process.env.NODE_ENV === 'production' ? '[hash:base64]' : '[name]__[local]___[hash:base64:5]') + '&importLoaders=1!postcss-loader') },
+        loader: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: "css-loader",
+              options: {
+                modules: true,
+                sourceMap: true,
+                localIdentName:
+                  process.env.NODE_ENV === "production"
+                    ? "[hash:base64]"
+                    : "[name]__[local]___[hash:base64:5]",
+                importLoaders: 1
+              }
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                plugins: () => [require("autoprefixer")]
+              }
+            }
+          ]
+        })
+      },
       {
         test: /\.js$/,
-        loaders: ['babel-loader'],
-        exclude: /node_modules/
+        include: [path.resolve(__dirname, "src")],
+        loaders: ["babel-loader"]
       }
     ]
   },
 
-  postcss: function () {
-    return [autoprefixer];
-  },
-
   resolve: {
-    extensions: ['', '.jsx', '.js', '.json'],
-    modulesDirectories: ['node_modules']
+    alias: {
+      react: path.resolve(__dirname, "node_modules/react")
+    },
+    modules: [path.resolve(__dirname, "src"), "node_modules"]
   },
 
   plugins: [
-    new ExtractTextPlugin('index.css'),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new ExtractTextPlugin({
+      filename: "[name].css"
+    })
   ]
 };

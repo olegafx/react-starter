@@ -1,28 +1,41 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react'
 
-import styles from '../css/TextBlockExample.css';
+import styles from '../css/TextBlockExample.css'
 
-export default class TextBlockExample extends Component {
-  constructor (props) {
-    super(props);
+class TextBlockExample extends Component {
+  state = {
+    text: '',
   }
 
-  componentDidMount () {
-    this.getData();
+  componentDidMount() {
+    this.loadData()
   }
 
-  async getData () {
-    const rawData = await fetch('http://headers.jsontest.com/');
-    const data = await rawData.json();
-
-    console.log('data', data);
+  loadData = async () => {
+    this.fetchText()
   }
 
-  render () {
+  fetchText = async () => {
+    const rawData = await fetch('/')
+    const data = await rawData.text()
+
+    const text = data
+
+    this.setState(state => ({
+      text,
+    }))
+  }
+
+  render() {
+    const {text} = this.state
+    const {value} = this.props
+
     return (
       <div className={styles.blockFlex}>
-        <span className={styles.text}>text block example</span>
+        <span className={styles.text}>{value || text}</span>
       </div>
-    );
+    )
   }
 }
+
+export default TextBlockExample
